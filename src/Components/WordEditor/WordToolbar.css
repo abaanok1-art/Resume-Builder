@@ -1,0 +1,140 @@
+.word-toolbar-container {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 8px;
+  background-color: #0d121f;
+  border-bottom: 1px solid #1e293b;
+  padding: 8px 18px;
+  position: sticky;
+  top: 68px;
+  z-index: 90;
+  user-select: none;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.4);
+}
+
+.toolbar-group {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.toolbar-divider {
+  width: 1px;
+  height: 24px;
+  background-color: #1e293b;
+  margin: 0 4px;
+}
+
+.toolbar-select {
+  background-color: #111827;
+  border: 1px solid #1e293b;
+  color: #e2e8f0;
+  padding: 5px 10px;
+  border-radius: 6px;
+  font-size: 13px;
+  font-family: inherit;
+  outline: none;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.toolbar-select:hover {
+  border-color: #06b6d4;
+  background-color: #1e293b;
+}
+
+.font-select {
+  min-width: 120px;
+}
+
+.size-select {
+  width: 72px;
+}
+
+/* Toolbar Buttons */
+.toolbar-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+  width: 32px;
+  height: 32px;
+  background-color: #111827;
+  border: 1px solid #1e293b;
+  color: #94a3b8;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  font-family: inherit;
+  font-size: 12px;
+}
+
+.toolbar-btn:hover {
+  background-color: #1e293b;
+  color: #38bdf8;
+  border-color: #06b6d4;
+}
+
+.toolbar-btn.insert-btn {
+  width: auto;
+  padding: 0 10px;
+  font-weight: 600;
+  color: #cbd5e1;
+}
+
+.toolbar-btn.reset-btn {
+  width: auto;
+  padding: 0 10px;
+  font-weight: 600;
+  color: #f87171;
+  background: rgba(239, 68, 68, 0.1);
+  border-color: rgba(239, 68, 68, 0.25);
+  margin-left: 6px;
+}
+
+.toolbar-btn.reset-btn:hover {
+  background: rgba(239, 68, 68, 0.2);
+  color: #ef4444;
+  border-color: #ef4444;
+}
+
+/* Color Palette Dots */
+.colors-group {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.color-dot {
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  border: 2px solid #1e293b;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.color-dot:hover {
+  transform: scale(1.2);
+}
+
+.color-dot.active-color {
+  border-color: #38bdf8;
+  box-shadow: 0 0 8px rgba(56, 189, 248, 0.6);
+  transform: scale(1.15);
+}
+
+/* Zoom group */
+.zoom-group {
+  margin-left: auto;
+}
+
+.zoom-text {
+  font-size: 12px;
+  font-weight: 700;
+  color: #64748b;
+  min-width: 40px;
+  text-align: center;
+}
+
