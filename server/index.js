@@ -16,35 +16,48 @@ app.use(express.json());
 
 // =========================================================================
 // 🟢 MONGODB ATLAS CONNECTION
-// PASTE YOUR MONGODB ATLAS CLUSTER LINK INSIDE THE QUOTES BELOW (OR IN .env)
 const MONGO_URI = process.env.MONGO_URI || "";
 
+let dbPromise = null;
+const connectDB = async () => {
+  if (mongoose.connection.readyState >= 1) return;
+  const uri = process.env.MONGO_URI || MONGO_URI;
+  if (!uri || uri.trim() === "") return;
+
+  if (!dbPromise) {
+    dbPromise = mongoose.connect(uri)
+      .then(() => {
+        console.log('✅ [MongoDB] Connected to MongoDB Atlas cluster successfully!');
+      })
+      .catch((err) => {
+        dbPromise = null;
+        console.error('❌ [MongoDB] Connection error:', err.message);
+      });
+  }
+  await dbPromise;
+};
+
+// Initial connection for persistent servers
 if (MONGO_URI && MONGO_URI.trim() !== "") {
-  mongoose.connect(MONGO_URI)
-    .then(() => {
-      console.log('✅ [MongoDB] Connected to MongoDB Atlas cluster successfully!');
-    })
-    .catch((err) => {
-      console.error('❌ [MongoDB] Connection error:', err.message);
-    });
-} else {
-  // Left empty for you to paste your link as requested:
-  // mongoose.connect("");
-  console.log('------------------------------------------------------------');
-  console.log('⚠️  [MongoDB] Connection string is currently empty.');
-  console.log('👉 Paste your MongoDB Atlas cluster link inside MONGO_URI in:');
-  console.log('   - server/.env  (MONGO_URI="your_link_here")');
-  console.log('   OR');
-  console.log('   - server/index.js (const MONGO_URI = "your_link_here")');
-  console.log('------------------------------------------------------------');
+  connectDB();
 }
 
-// API Routes
-app.use('/api/auth', authRoutes);
-app.use('/api/resume', resumeRoutes);
+// Middleware to ensure DB connection is ready on serverless function invocations
+app.use(async (req, res, next) => {
+  try {
+    await connectDB();
+  } catch (err) {
+    console.error('DB connect middleware error:', err);
+  }
+  next();
+});
+
+// API Routes (supports both /api/auth and /auth paths)
+app.use(['/api/auth', '/auth'], authRoutes);
+app.use(['/api/resume', '/resume'], resumeRoutes);
 
 // Health check endpoint
-app.get('/api/health', (req, res) => {
+app.get(['/api/health', '/health'], (req, res) => {
   res.json({
     status: 'online',
     message: 'Resume Builder API is running smoothly',
@@ -52,6 +65,10 @@ app.get('/api/health', (req, res) => {
   });
 });
 
-app.listen(PORT, () => {
-  console.log(`🚀 [Server] Resume Builder backend running on http://localhost:${PORT}`);
-});
+if (!process.env.VERCEL) {
+  app.listen(PORT, () => {
+    console.log(`🚀 [Server] Resume Builder backend running on http://localhost:${PORT}`);
+  });
+}
+
+export default app;
