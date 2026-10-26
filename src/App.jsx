@@ -144,7 +144,9 @@ function App() {
   const { user, token, isAuthenticated } = useAuth();
 
   // Navigation & Workspace states
-  const [isSidebarCollapsed, setIsSidebarCollapsed] = useState(false);
+  const [isSidebarCollapsed, setIsSidebarCollapsed] = useState(
+    () => window.matchMedia('(max-width: 768px)').matches
+  );
   const [activeTab, setActiveTab] = useState("editor");
   const [activeTemplate, setActiveTemplate] = useState("modern");
   const [accentColor, setAccentColor] = useState("#0284c7");

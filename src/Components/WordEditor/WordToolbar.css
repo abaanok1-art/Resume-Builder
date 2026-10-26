@@ -138,3 +138,36 @@
   text-align: center;
 }
 
+@media (max-width: 900px) {
+  .word-toolbar-container {
+    position: relative;
+    top: auto;
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    overflow-y: hidden;
+    padding: 8px 12px;
+    scrollbar-width: thin;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .toolbar-group,
+  .toolbar-divider {
+    flex-shrink: 0;
+  }
+
+  .zoom-group {
+    margin-left: 0;
+  }
+}
+
+@media (max-width: 480px) {
+  .font-select {
+    min-width: 105px;
+  }
+
+  .toolbar-btn.insert-btn,
+  .toolbar-btn.reset-btn {
+    padding-right: 8px;
+    padding-left: 8px;
+  }
+}

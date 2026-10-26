@@ -490,9 +490,28 @@
   color: #ef4444;
 }
 
-@media (max-width: 900px) {
+@media (max-width: 1100px) {
+  .navbar-container {
+    height: auto;
+    min-height: 68px;
+    flex-wrap: wrap;
+    padding: 10px 16px;
+  }
+
   .navbar-center {
-    display: none;
+    order: 3;
+    width: 100%;
+    justify-content: flex-start;
+    overflow-x: auto;
+  }
+
+  .nav-pill-list {
+    width: max-content;
+    max-width: 100%;
+  }
+
+  .navbar-right {
+    margin-left: auto;
   }
 }
 
@@ -502,5 +521,83 @@
   }
   .ats-mini-chip {
     display: none;
+  }
+
+  .navbar-container {
+    gap: 8px;
+    padding: 8px 12px;
+  }
+
+  .navbar-left {
+    gap: 8px;
+  }
+
+  .brand-logo-img {
+    height: 30px;
+  }
+
+  .navbar-right {
+    flex: 1;
+    justify-content: flex-end;
+    gap: 8px;
+  }
+
+  .btn-cloud-save {
+    padding: 7px 9px;
+  }
+
+  .nav-actions {
+    gap: 6px;
+  }
+
+  .btn-secondary-glass {
+    padding: 8px 10px;
+  }
+
+  .btn-cyan-gradient {
+    padding: 8px 11px;
+  }
+
+  .nav-pill-list {
+    gap: 2px;
+    padding: 4px;
+  }
+
+  .nav-tab-btn {
+    padding: 7px 12px;
+    font-size: 13px;
+    white-space: nowrap;
+  }
+}
+
+@media (max-width: 480px) {
+  .brand-badge,
+  .btn-cloud-save,
+  .nav-actions .btn-secondary-glass,
+  .btn-signin-nav {
+    display: none;
+  }
+
+  .btn-cyan-gradient {
+    padding: 8px 10px;
+  }
+
+  .btn-cyan-gradient span {
+    display: none;
+  }
+
+  .user-profile-btn {
+    padding-right: 7px;
+  }
+
+  .profile-dropdown-card {
+    right: -4px;
+    width: min(230px, calc(100vw - 24px));
+  }
+
+  .navbar-center {
+    margin: 0 -12px;
+    width: calc(100% + 24px);
+    padding: 0 12px;
   }
 }

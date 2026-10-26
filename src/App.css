@@ -148,6 +148,11 @@
   box-shadow: 0 16px 50px rgba(0, 0, 0, 0.7), 0 0 0 2px rgba(6, 182, 212, 0.4);
 }
 
+.a4-document-paper,
+.a4-document-paper * {
+  overflow-wrap: anywhere;
+}
+
 /* Standard Typography inside Document */
 .a4-document-paper h1 {
   margin: 0 0 6px 0;
@@ -216,5 +221,112 @@
     border-radius: 0 !important;
     padding: 20mm !important;
     margin: 0 auto !important;
+  }
+}
+
+@media (max-width: 1024px) {
+  .main-layout {
+    min-height: 0;
+  }
+
+  .word-canvas-viewport {
+    padding: 20px 16px 40px;
+  }
+}
+
+@media (max-width: 768px) {
+  .main-layout {
+    position: relative;
+    display: block;
+    overflow: visible;
+    min-height: calc(100dvh - 150px);
+  }
+
+  .sidebar-container {
+    position: absolute;
+    z-index: 95;
+    left: 0;
+    top: 0;
+    width: min(320px, 88vw);
+    height: min(720px, calc(100dvh - 150px));
+    min-height: 0;
+    overflow-y: auto;
+    box-shadow: 16px 12px 32px rgba(0, 0, 0, 0.45);
+  }
+
+  .sidebar-container.collapsed {
+    width: 0;
+    visibility: hidden;
+    overflow: hidden;
+    border: 0;
+  }
+
+  .word-canvas-viewport {
+    min-height: 0;
+    padding: 16px 12px 32px;
+  }
+
+  .canvas-header-bar {
+    gap: 12px;
+    padding: 10px 12px;
+  }
+
+  .doc-meta-info {
+    min-width: 0;
+    flex-wrap: wrap;
+  }
+
+  .doc-name {
+    overflow-wrap: anywhere;
+  }
+
+  .a4-sheet-scroller {
+    width: 100%;
+    transform: none !important;
+  }
+
+  .a4-document-paper {
+    width: 100%;
+    max-width: 794px;
+    min-height: 0;
+    padding: clamp(24px, 6vw, 60px);
+    border-radius: 4px;
+  }
+
+  .a4-document-paper > div[style*="display: flex"] {
+    flex-wrap: wrap;
+    gap: 12px !important;
+  }
+
+  .a4-document-paper > div[style*="display: flex"] > div {
+    width: 100% !important;
+    padding-right: 0 !important;
+    border-right: 0 !important;
+  }
+
+  .toast-banner {
+    right: 12px;
+    bottom: 12px;
+    left: 12px;
+    justify-content: center;
+  }
+}
+
+@media (max-width: 480px) {
+  .word-canvas-viewport {
+    padding: 12px 8px 24px;
+  }
+
+  .canvas-header-bar {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  .doc-meta-info {
+    gap: 6px;
+  }
+
+  .a4-document-paper {
+    padding: 22px 18px;
   }
 }

@@ -280,3 +280,22 @@
 .auth-link-btn:hover {
   color: #06b6d4;
 }
+
+@media (max-width: 480px) {
+  .auth-overlay {
+    align-items: flex-start;
+    padding: 12px;
+    overflow-y: auto;
+  }
+
+  .auth-modal-card {
+    margin: auto 0;
+    padding: 26px 20px;
+    max-height: calc(100dvh - 24px);
+    overflow-y: auto;
+  }
+
+  .auth-title {
+    font-size: 21px;
+  }
+}
